@@ -127,28 +127,33 @@ def game_hash
   }
 end
 
-def num_points_scored(player_name_input)
-  game_hash.each do |key, value|
-      array_counter = 0 
-         while array_counter < value[:players].length do
-      if value[:players][array_counter][:player_name] == player_name_input
-      return value[:players][array_counter][:points]
-      end
-      array_counter+=1
-    end
+#both teams players added into 1 array, helper method
+def players
+game_hash[:home][:players].concat game_hash[:away][:players]
+end
+#make a helper method to find the player and then for each method can return different things
+
+def find_team(team_name_input)
+found_team = game_hash.find do |team|
+  team[:team_name] == team_name_input
+end
+binding.pry
+0
+end
+
+
+def find_player(player_name)
+  found_player = players.find do |player|
+    player[:player_name] == player_name
   end
 end
 
+def num_points_scored(players_name)
+find_player(players_name)[:points]
+end
+
 def shoe_size(player_name_input)
-  game_hash.each do |key, value|
-      array_counter = 0 
-         while array_counter < value[:players].length do
-      if value[:players][array_counter][:player_name] == player_name_input
-      return value[:players][array_counter][:shoe]
-      end
-      array_counter+=1
-    end
-  end
+  find_player(players_name)[:shoe]
 end
 
 def team_colors(team_name_input)
