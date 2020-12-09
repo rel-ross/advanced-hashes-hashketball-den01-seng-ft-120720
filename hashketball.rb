@@ -153,12 +153,12 @@ end
 
 def team_colors(team_name_input)
   game_hash.each do |key, value|
-      array_counter = 0 
-      while array_counter < value.length do
+ #     array_counter = 0 
+  #    while array_counter < value.length do
       if value[:team_name] == team_name_input
       return value[:colors]
-      end
-      array_counter+=1
+     # end
+  #    array_counter+=1
     end
   end
 end
